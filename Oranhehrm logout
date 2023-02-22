@@ -1,0 +1,31 @@
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
+
+public class Orangehrmlogout {
+@Test
+public void logout() {
+	
+	 System.setProperty("webdriver.chrome.driver","C:\\Users\\Admin\\Documents\\drivers\\chromeDriver.exe");
+		WebDriver driver= new ChromeDriver();
+		
+		 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		  driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+		  driver.manage().window().maximize();
+		  driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+		    WebElement Username = driver.findElement(By.xpath("//input[@placeholder='Username']"));
+		          Username.sendKeys("Admin");
+		          WebElement Password = driver.findElement(By.xpath("//input[@placeholder='Password']"));
+		          Password.sendKeys("admin123");
+		          WebElement Login = driver.findElement(By.xpath("//button[@type='submit']"));
+		          Login.click();
+		          driver.findElement(By.xpath("//p[@class='oxd-userdropdown-name']")).click();
+		  		driver.findElement(By.xpath("//a[text()='Logout']")).click();
+		  		driver.findElement(By.xpath("//h5[text()='Login']")).isDisplayed();
+		  		driver.close();
+}
+}
